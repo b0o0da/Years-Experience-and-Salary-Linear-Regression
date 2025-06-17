@@ -1,0 +1,41 @@
+import streamlit as st
+import pickle
+import numpy as np
+import os
+import subprocess
+import sys
+from sklearn.metrics import mean_absolute_error
+import pandas as pd 
+from sklearn.model_selection import train_test_split
+
+df = pd.read_csv("Salary.csv")
+X = df["YearsExperience"]
+y = df["Salary"]
+X=pd.DataFrame(X)
+y=pd.DataFrame(y)
+X_train , X_test , y_train , y_test = train_test_split(X , y , test_size=.2 , random_state=101 )
+
+
+model_path = r"C:\Users\20111\Desktop\Finished projects\Salaries_experiance\model.pkl"  
+with open(model_path, "rb") as file:
+    model = pickle.load(file)
+
+
+st.title("Salary Prediction App 💰")
+st.write("Enter your years of experience to predict your salary.")
+
+
+experience = st.number_input("Enter Years of Experience", min_value=0.0, max_value=50.0, step=0.1)
+
+y_pred = model.predict(X_test)
+mae = mean_absolute_error(y_pred , y_test)
+
+if st.button("Predict Salary"):
+    experience_array = np.array([[experience]], dtype=float)
+    predicted_salary = model.predict(experience_array)[0]
+
+    
+    st.success(f"Your predicted salary: ${float(predicted_salary):,.2f}")
+    
+    mae = mean_absolute_error(y_test, y_pred)
+    st.info(f"📊 Mean Absolute Error (MAE): ${mae:,.2f}")
