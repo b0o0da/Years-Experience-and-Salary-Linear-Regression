@@ -16,7 +16,7 @@ y=pd.DataFrame(y)
 X_train , X_test , y_train , y_test = train_test_split(X , y , test_size=.2 , random_state=101 )
 
 
-model_path = r"C:\Users\20111\Desktop\Finished projects\Salaries_experiance\model.pkl"  
+model_path = "model.pkl"  
 with open(model_path, "rb") as file:
     model = pickle.load(file)
 
