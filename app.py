@@ -25,8 +25,8 @@ st.title("Salary Prediction App 💰")
 st.write("Enter your years of experience to predict your salary.")
 
 
-years = st.number_input("Years", min_value=0, max_value=50.0, step=1)
-monthes = st.number_input("Monthes", min_value=0, max_value=50.0, step=1)
+years = st.number_input("Years", min_value=0, max_value=50, step=1)
+monthes = st.number_input("Monthes", min_value=0, max_value=50, step=1)
 days = st.number_input("Days", min_value=0, max_value=100, step=5)
 experience = years + monthes/12 + days/365
 y_pred = model.predict(X_test)
