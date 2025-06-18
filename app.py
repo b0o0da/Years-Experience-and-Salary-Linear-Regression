@@ -37,7 +37,7 @@ if st.button("Predict Salary"):
     predicted_salary = model.predict(experience_array)[0]
 
     
-    st.success(f"Your predicted salary: $ {float(predicted_salary):}")
+    st.success(f"Your predicted salary: $ {float(predicted_salary):.2f}")
     
     mae = mean_absolute_error(y_test, y_pred)
     st.info(f"📊 Mean Absolute Error (MAE): ${mae:,.2f}")
